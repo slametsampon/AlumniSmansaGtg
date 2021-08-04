@@ -23,6 +23,13 @@
     <div class="topnav">
       <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'account_logout'%}?next={{request.path}}">Logout</a></li>   
+            <li style="float: right;">User : {{ user.get_username }}</li>
+          {% else %}
+            <li><a href="{% url 'account_login'%}?next={{request.path}}">Login</a></li>   
+            <li style="float: right;"><a href="{% url 'account_signup' %}">Sign Up</a></li>   
+          {% endif %} 
       </ul>
     </div>
 
