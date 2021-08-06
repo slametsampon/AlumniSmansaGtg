@@ -1,0 +1,24 @@
+{% extends 'baseArticle.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>All articles</h1>
+
+    {% if articleList %}
+    <ul>
+
+      {% for article in articleList %}
+      <li>
+        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a> ({{article.post_date}}) — <a href="{% url 'articles:articlesByAuthor' article.author.pk %}">{{ article.author }}</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+    <!--For pagination includes-->
+    {% include 'includes/pagination.html' %}
+
+    {% else %}
+      <p>There are no articles.</p>
+    {% endif %}       
+{% endblock %}
+

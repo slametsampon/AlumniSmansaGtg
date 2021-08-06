@@ -1,0 +1,21 @@
+{% extends 'baseAlumniSmansaGtg.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Active Blogger List{% endblock %}
+
+{% block sidebar %}
+    <ul class="sidebar-nav">
+        <li><a href="{% url 'blog:blogs' %}">All blogs</a></li>
+        <li><a href="{% url 'accounts:bloggers-new' %}">New bloggers</a></li>
+        <li><a href="{% url 'accounts:bloggers-active' %}">Active bloggers</a></li>
+    </ul>        
+{% endblock %}
+
+{% block content %}
+  <h1>Active bloggers</h1>
+
+  <!--For listing includes, from accounts app-->
+  {% include 'includes/alumniSmansaUserList.html' %}
+
+{% endblock %}
+

@@ -1,0 +1,9 @@
+<!-- templates/article/article_form.html -->
+{% extends 'baseArticle.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Form Article{% endblock %}
+
+{% block content %}
+  {% crispy form %}
+{% endblock %}

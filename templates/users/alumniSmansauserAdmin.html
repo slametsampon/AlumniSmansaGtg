@@ -1,0 +1,26 @@
+{% extends 'baseAlumniSmansaGtg.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}User Admin{% endblock %}
+
+{% block sidebar %}
+    <ul class="sidebar-nav">
+        <li><a href="{% url 'blog:blogs' %}">All blogs</a></li>
+        <li><a href="{% url 'accounts:bloggers-new' %}">New bloggers</a></li>
+        <li><a href="{% url 'accounts:bloggers-active' %}">Active bloggers</a></li>
+      </ul>        
+{% endblock %}
+
+{% block content %}
+  <h3>{{caption}}</h3>
+
+  <ul>
+    <li>Bloggers : {{bloggers}}</li>
+    <li>New Comers : {{newComers}}</li>
+    <li>Active Bloggers : {{activeBloggers}}</li>
+    <hr>
+    <li>Total Blogs : {{blogs}}</li>
+  </ul>
+
+{% endblock %}
+

@@ -1,0 +1,14 @@
+{% extends 'baseArticle.html' %}
+{% load crispy_forms_tags %}
+
+{% extends "base_blog.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Commnet Blog{% endblock %}
+
+{% block content %}
+    <p>Post your comment for: <a href="{% url 'blog:blog-detail' blog.pk %}">{{blog.title}}</a></p>
+
+    {% crispy form %}
+{% endblock %}
+

@@ -1,0 +1,35 @@
+{% extends 'baseArticle.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Detail Article{% endblock %}
+
+{% block content %}
+
+  <h3>{{ article.title }}</h3>
+  <p><strong>Post date</strong> {{ article.post_date }}</p>
+  <p><strong>content:</strong></p>
+  <p style="white-space:pre-wrap;">{{ article.content }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Comments</h4>
+
+    {% for comment in article.articlecomment_set.all %}
+      <hr>
+      <p>
+        {{comment.author}} ({{comment.post_date}}) - {{comment.description}}
+      </p>
+    {% endfor %}
+    <hr>
+    {% if user.is_authenticated %}
+      {% if user.verified_by == 0 %}
+        <p><strong>Need verification from admin to add new comment</strong></p>
+      {% else %}
+        <p><a href="{% url 'articles:article-comment' article.id %}">Add a new comment</a></p>
+      {% endif %}
+    {% else %}
+      <p><a href="{% url 'account_login'%}?next={{request.path}}">Login</a> to add a new comment</p>
+    {% endif %} 
+
+  </div>
+{% endblock %}
+
