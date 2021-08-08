@@ -56,8 +56,8 @@ class ArticleListByAuthorView(generic.ListView):
         """
         # Call the base implementation first to get a context
         context = super(ArticleListByAuthorView, self).get_context_data(**kwargs)
-        # Get the articlesger object from the "pk" URL parameter and add it to the context
-        context['articlesger'] = get_object_or_404(AlumniSmansaUser, pk = self.kwargs['pk'])
+        # Get the articles object from the "pk" URL parameter and add it to the context
+        context['articles'] = get_object_or_404(AlumniSmansaUser, pk = self.kwargs['pk'])
         return context
     
 class ArticleCommentCreateView(LoginRequiredMixin, generic.CreateView):

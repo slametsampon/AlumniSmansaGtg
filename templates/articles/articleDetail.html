@@ -24,7 +24,7 @@
       {% if user.verified_by == 0 %}
         <p><strong>Need verification from admin to add new comment</strong></p>
       {% else %}
-        <p><a href="{% url 'articles:article-comment' article.id %}">Add a new comment</a></p>
+        <p><a href="{% url 'articles:articleComment' article.id %}">Add a new comment</a></p>
       {% endif %}
     {% else %}
       <p><a href="{% url 'account_login'%}?next={{request.path}}">Login</a> to add a new comment</p>

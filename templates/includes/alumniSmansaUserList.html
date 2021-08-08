@@ -1,19 +1,19 @@
 <!--List of smansa user-->
-{% if smansauser_list %}
+{% if alumniSmansauserList %}
 <ul>
 
-  {% for author in smansauser_list %}
+  {% for author in alumniSmansauserList %}
     <li>
       <strong>{{author}}</strong> 
-      —<a href="{% url 'accounts:blogger-detail' author.pk %}"> Detail </a>
+      —<a href="{% url 'users:authorDetail' author.pk %}"> Detail </a>
       {% if author.verified_by == 0 %}
         {% if user.is_superuser %}
-          —<a href="{% url 'accounts:blogger-verify' author.pk %}"> Verify </a>
+          —<a href="{% url 'users:authorVerify' author.pk %}"> Verify </a>
         {% else %}
           — Need verification 
         {% endif %}
       {% else %}
-        <a href="{% url 'blog:blogs-by-author' author.pk %}">Blog </a>
+        <a href="{% url 'articles:articlesByAuthor' author.pk %}">Blog </a>
       {% endif %}
     </li>
   {% endfor %}
@@ -23,5 +23,5 @@
 {% include 'includes/pagination.html' %}
 
 {% else %}
-  <p>There are no bloggers in the list yet.</p>
+  <p>There are no authors in the list yet.</p>
 {% endif %}       

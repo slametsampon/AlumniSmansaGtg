@@ -39,6 +39,7 @@ class AlumniSmansaUserListView(generic.ListView):
     """
     model = AlumniSmansaUser
     template_name = 'users/alumniSmansauserList.html'
+    context_object_name = 'alumniSmansauserList'
     paginate_by = 5
 
     def get_queryset(self):
@@ -62,6 +63,7 @@ class AlumniSmansaUserNewListView(generic.ListView):
     """
     template_name = 'users/alumniSmansauserNewList.html'  # Specify your own template name/location
     model = AlumniSmansaUser
+    context_object_name = 'alumniSmansauserList'
     paginate_by = 5
 
     def get_queryset(self):
@@ -74,6 +76,7 @@ class AlumniSmansaUserActiveListView(generic.ListView):
     """
     template_name = 'users/activeAlumniSmansaUserList.html'  # Specify your own template name/location
     model = AlumniSmansaUser
+    context_object_name = 'alumniSmansauserList'
     paginate_by = 5
 
     def get_queryset(self):
@@ -90,6 +93,7 @@ class AlumniSmansaUserDetailView(generic.DetailView):
 class AlumniSmansaUserVerifyView(LoginRequiredMixin, UpdateView):
     form_class = AlumniSmansaUserVerifyForm
     model = AlumniSmansaUser
+    context_object_name = 'alumniSmansauserList'
     template_name = 'users/alumniSmansauserVerify.html'  # Specify your own template name/location
 
     def get_context_data(self, **kwargs):
@@ -110,13 +114,13 @@ class AlumniSmansaUserVerifyView(LoginRequiredMixin, UpdateView):
 
             content_type = ContentType.objects.get_for_model(AlumniSmansaUser)
             permission = Permission.objects.get(
-                codename='add_blog',
+                codename='add_article',
                 content_type=content_type,
             )
             self.object.user_permissions.add(permission)
             content_type = ContentType.objects.get_for_model(ArticleComment)
             permission = Permission.objects.get(
-                codename='add_blogcomment',
+                codename='add_articlecomment',
                 content_type=content_type,
             )
             self.object.user_permissions.add(permission)
