@@ -1,32 +1,32 @@
 <!--Smansa user detail used in several html throug include-->
-<h1>Alumni Smansa User Detial</h1>
+<h1>Alumni Smansa User Detail</h1>
 <p><strong>Username</strong></p>
-<p>{{ alumniSmansaUser.username }}</p>
+<p>{{ alumnismansauser.username }}</p>
 <p><strong>Mobile phone : </strong></p>
-<p>{{ alumniSmansaUser.mobile_number }}</p>
+<p>{{ alumnismansauser.mobile_number }}</p>
 <p><strong>Address</strong></p>
-<p>{{ alumniSmansaUser.address }}</p>
+<p>{{ alumnismansauser.address }}</p>
 <p><strong>Bio data</strong></p>
-<p>{{ alumniSmansaUser.bio }}</p>
+<p>{{ alumnismansauser.bio }}</p>
 <hr>
 
 <!--Logic for User-->
-{% if user.pk == alumniSmansaUser.pk %}
-  <a href="{% url 'users:authorUpdate' alumniSmansaUser.pk %}"> Update </a>—
+{% if user.pk == alumnismansauser.pk %}
+  <a href="{% url 'users:authorUpdate' alumnismansauser.pk %}"> Update </a>—
 {% endif %}
 
 {% if user.is_superuser %}
-  <a href="{% url 'users:authorDelete' alumniSmansaUser.pk %}"> Delete </a>
-  —<a href="{% url 'users:authorVerify' alumniSmansaUser.pk %}"> Update to Admin </a>
-  {% if alumniSmansaUser.verified_by == 0 %}
-    —<a href="{% url 'users:authorVerify' alumniSmansaUser.pk %}"> Verify </a>
+  <a href="{% url 'users:authorDelete' alumnismansauser.pk %}"> Delete </a>
+  —<a href="{% url 'users:authorVerify' alumnismansauser.pk %}"> Update to Admin </a>
+  {% if alumnismansauser.verified_by == 0 %}
+    —<a href="{% url 'users:authorVerify' alumnismansauser.pk %}"> Verify </a>
   {% else %}
-    —<a href="{% url 'articles:articlesByAuthor' alumniSmansaUser.pk %}">Blog list</a>
+    —<a href="{% url 'articles:articlesByAuthor' alumnismansauser.pk %}">Blog list</a>
   {% endif %}
 {% else %}
-  {% if alumniSmansaUser.verified_by == 0 %}
+  {% if alumnismansauser.verified_by == 0 %}
     Need verification 
   {% else %}
-    <a href="{% url 'articles:articlesByAuthor' alumniSmansaUser.pk %}">Blog list</a>
+    <a href="{% url 'articles:articlesByAuthor' alumnismansauser.pk %}">Blog list</a>
   {% endif %}
 {% endif %}

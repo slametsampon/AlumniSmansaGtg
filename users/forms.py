@@ -101,7 +101,7 @@ class AlumniSmansaUserChangeForm(UserChangeForm):
         fields = ('username', 'mobile_number', 'address', 'bio')
 
 class AlumniSmansaUserVerifyForm(ModelForm):
-    CHOICES = [('1', 'Blogger'), ('2', 'Admin')]
+    CHOICES = [('1', 'Author'), ('2', 'Admin')]
     user_mode = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, initial = '1')
 
     def clean_user_mode(self):
@@ -128,7 +128,7 @@ class AlumniSmansaUserForm(forms.Form):
     pass
 
 class AlumniSmansaUserUpdateForm(ModelForm):
-    CHOICES = [('1', 'Blogger'), ('2', 'Admin')]
+    CHOICES = [('1', 'Author'), ('2', 'Admin')]
     password = forms.CharField(widget=forms.PasswordInput())
     address = forms.CharField(widget=forms.Textarea(attrs={'rows':3}))
     bio = forms.CharField(widget=forms.Textarea(attrs={'rows':5}))

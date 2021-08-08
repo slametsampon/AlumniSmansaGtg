@@ -132,7 +132,7 @@ class AlumniSmansaUserVerifyView(LoginRequiredMixin, UpdateView):
 
         return super(AlumniSmansaUserVerifyView,self).form_valid(form)    
 
-class AdminSmansaView(LoginRequiredMixin, FormView):
+class AlumniSmansaUserAdminView(LoginRequiredMixin, FormView):
     template_name = 'users/alumniSmansauserAdmin.html'  # Specify your own template name/location
     form_class = AlumniSmansaUserAdminForm
 
@@ -145,13 +145,13 @@ class AdminSmansaView(LoginRequiredMixin, FormView):
 
         authors = AlumniSmansaUser.objects.all()
         newComers = authors.filter(verified_by=0).count()
-        activeArticlegers = authors.filter(verified_by__gt=0).count()
+        activeAuthors = authors.filter(verified_by__gt=0).count()
         context['authors'] = authors.count()
         context['newComers'] = newComers
-        context['activeArticlegers'] = activeArticlegers
+        context['activeAuthors'] = activeAuthors
 
-        blogs = Article.objects.all().count()
-        context['blogs'] = blogs
+        articles = Article.objects.all().count()
+        context['articles'] = articles
 
         return context
 

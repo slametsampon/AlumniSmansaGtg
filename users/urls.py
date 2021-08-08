@@ -5,7 +5,7 @@ from . import views
 app_name = 'users'
 urlpatterns = [
     path('signup/', views.AlumniSmansaUserCreateView.as_view(), name='signup'),
-    path('admin/', views.AdminSmansaView.as_view(), name='admin'),
+    path('admin/', views.AlumniSmansaUserAdminView.as_view(), name='admin'),
     path('authors/', views.AlumniSmansaUserListView.as_view(), name='authors'),
     path('new_comers/', views.AlumniSmansaUserNewListView.as_view(), name='authorsNew'),
     path('active/', views.AlumniSmansaUserActiveListView.as_view(), name='authorsActive'),

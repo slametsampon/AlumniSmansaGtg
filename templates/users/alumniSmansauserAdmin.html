@@ -3,24 +3,35 @@
 
 {% block title %}User Admin{% endblock %}
 
-{% block sidebar %}
-    <ul class="sidebar-nav">
-        <li><a href="{% url 'blog:blogs' %}">All blogs</a></li>
-        <li><a href="{% url 'accounts:bloggers-new' %}">New bloggers</a></li>
-        <li><a href="{% url 'accounts:bloggers-active' %}">Active bloggers</a></li>
-      </ul>        
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <!---Left side of page, occupay 2 of 12 coulumn-->
+            <div class="col-sm-2">
+                {% block sidebar %}
+                    <ul class="sidebar-nav">
+                      <ul class="sidebar-nav">
+                        <li><a href="{% url 'articles:articles' %}">All articles</a></li>
+                        <li><a href="{% url 'users:authorsNew' %}">New authors</a></li>
+                        <li><a href="{% url 'users:authorsActive' %}">Active authors</a></li>
+                      </ul>        
+                    </ul>        
+                {% endblock %}
+            </div>
+            <!---Right/remaining side of page, occupay 10 of 12 coulumn-->
+            <div class="col-sm-10 ">
+                {% block content %}
+                  <h3>{{caption}}</h3>
+
+                  <ul>
+                    <li>Authors : {{authors}}</li>
+                    <li>New Comers : {{newComers}}</li>
+                    <li>Active Authors : {{activeAuthors}}</li>
+                    <hr>
+                    <li>Total Articles : {{articles}}</li>
+                  </ul>
+                {% endblock %}
+            </div>
+        </div>    
+    </div>
 {% endblock %}
-
-{% block content %}
-  <h3>{{caption}}</h3>
-
-  <ul>
-    <li>Bloggers : {{bloggers}}</li>
-    <li>New Comers : {{newComers}}</li>
-    <li>Active Bloggers : {{activeBloggers}}</li>
-    <hr>
-    <li>Total Blogs : {{blogs}}</li>
-  </ul>
-
-{% endblock %}
-

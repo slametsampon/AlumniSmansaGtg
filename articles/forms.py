@@ -8,7 +8,7 @@ from crispy_forms.layout import Layout, Submit, Fieldset, Field
 
 
 class ArticleCreateForm(ModelForm):
-    description = forms.CharField(widget=forms.Textarea(attrs={'rows':12}))
+    content = forms.CharField(widget=forms.Textarea(attrs={'rows':12}))
 
     def clean_title(self):
         data = self.cleaned_data['title']
@@ -16,8 +16,8 @@ class ArticleCreateForm(ModelForm):
         # Remember to always return the cleaned data.
         return data
 
-    def clean_description(self):
-        data = self.cleaned_data['description']
+    def clean_content(self):
+        data = self.cleaned_data['content']
         
         # Remember to always return the cleaned data.
         return data
@@ -28,14 +28,14 @@ class ArticleCreateForm(ModelForm):
         self.helper.layout = Layout(
             Fieldset('Entry Article',
             Field('title', css_class='form-group col-md-4 mb-0'),
-            Field('description', css_class='form-group col-md-6 mb-0'),
+            Field('content', css_class='form-group col-md-6 mb-0'),
             ),
             Submit('submit', 'Submit')
         )
 
     class Meta:
         model = Article
-        fields = ('title', 'description',)
+        fields = ('title', 'content',)
 
 class ArticleCommentCreateForm(ModelForm):
     description = forms.CharField(widget=forms.Textarea(attrs={'rows':3}))

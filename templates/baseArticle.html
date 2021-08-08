@@ -10,9 +10,9 @@
             <div class="col-sm-2">
                 {% block sidebar %}
                     <ul class="sidebar-nav">
-                        <li><a href="{% url 'articles:articles' %}">All blogs</a></li>
-                        {% if perms.blog.add_blog %}       
-                            <li><a href="{% url 'articles:articleCreate' %}">Create blog</a></li>
+                        <li><a href="{% url 'articles:articles' %}">All articles</a></li>
+                        {% if perms.article.add_article %}       
+                            <li><a href="{% url 'articles:articleCreate' %}">Create article</a></li>
                         {% endif %}
                         {% if user.is_superuser %}
                             <li><a href="{% url 'users:admin' %}">Admin</a></li>

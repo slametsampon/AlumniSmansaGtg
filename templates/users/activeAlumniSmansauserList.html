@@ -1,20 +1,20 @@
 {% extends 'baseAlumniSmansaGtg.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Active Blogger List{% endblock %}
+{% block title %}Active Author List{% endblock %}
 
 {% block sidebar %}
     <ul class="sidebar-nav">
         <li><a href="{% url 'blog:blogs' %}">All blogs</a></li>
-        <li><a href="{% url 'accounts:bloggers-new' %}">New bloggers</a></li>
-        <li><a href="{% url 'accounts:bloggers-active' %}">Active bloggers</a></li>
+        <li><a href="{% url 'users:authorsNew' %}">New authors</a></li>
+        <li><a href="{% url 'users:authorsActive' %}">Active authors</a></li>
     </ul>        
 {% endblock %}
 
 {% block content %}
-  <h1>Active bloggers</h1>
+  <h1>Active authors</h1>
 
-  <!--For listing includes, from accounts app-->
+  <!--For listing includes, from users app-->
   {% include 'includes/alumniSmansaUserList.html' %}
 
 {% endblock %}

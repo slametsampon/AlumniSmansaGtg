@@ -1,13 +1,10 @@
 {% extends 'baseArticle.html' %}
 {% load crispy_forms_tags %}
 
-{% extends "base_article.html" %}
-{% load crispy_forms_tags %}
-
-{% block title %}Commnet Article{% endblock %}
+{% block title %}Comment Article{% endblock %}
 
 {% block content %}
-    <p>Post your comment for: <a href="{% url 'article:articleDetail' article.pk %}">{{article.title}}</a></p>
+    <p>Post your comment for: <a href="{% url 'articles:articleDetail' article.pk %}">{{article.title}}</a></p>
 
     {% crispy form %}
 {% endblock %}

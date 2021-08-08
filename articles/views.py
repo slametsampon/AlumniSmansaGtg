@@ -18,7 +18,7 @@ class ArticleHomeView(generic.ListView):
     
 class ArticleListView(generic.ListView):
     """
-    Generic class-based view for a list of all articless.
+    Generic class-based view for a list of all articles.
     """
     model = Article
     template_name = 'articles/articleList.html'
@@ -36,11 +36,12 @@ from django.shortcuts import get_object_or_404
 
 class ArticleListByAuthorView(generic.ListView):
     """
-    Generic class-based view for a list of articless posted by a particular AlumniSmansaUser.
+    Generic class-based view for a list of articles posted by a particular AlumniSmansaUser.
     """
     model = Article
-    paginate_by = 5
+    context_object_name = 'articleList'
     template_name ='articles/articleListByAuthor.html'
+    paginate_by = 5
     
     def get_queryset(self):
         """
@@ -66,7 +67,7 @@ class ArticleCommentCreateView(LoginRequiredMixin, generic.CreateView):
     """
     model = ArticleComment
     form_class = ArticleCommentCreateForm
-    template_name = 'articles/articlesCommentCreateForm.html'
+    template_name = 'articles/articleCommentCreateForm.html'
 
     def get_context_data(self, **kwargs):
         """
@@ -75,7 +76,7 @@ class ArticleCommentCreateView(LoginRequiredMixin, generic.CreateView):
         # Call the base implementation first to get a context
         context = super(ArticleCommentCreateView, self).get_context_data(**kwargs)
         # Get the articles from id and add it to the context
-        context['articles'] = get_object_or_404(Article, pk = self.kwargs['pk'])
+        context['article'] = get_object_or_404(Article, pk = self.kwargs['pk'])
         return context
         
     def form_valid(self, form):
@@ -85,7 +86,7 @@ class ArticleCommentCreateView(LoginRequiredMixin, generic.CreateView):
         #Add logged-in user as author of comment
         form.instance.author = self.request.user
         #Associate comment with articles based on passed id
-        form.instance.articles=get_object_or_404(Article, pk = self.kwargs['pk'])
+        form.instance.article=get_object_or_404(Article, pk = self.kwargs['pk'])
         # Call super-class form validation behaviour
         return super(ArticleCommentCreateView, self).form_valid(form)
 
@@ -93,7 +94,7 @@ class ArticleCommentCreateView(LoginRequiredMixin, generic.CreateView):
         """
         After posting comment return to associated articles.
         """
-        return reverse('articles:articles-detail', kwargs={'pk': self.kwargs['pk'],})
+        return reverse('articles:articleDetail', kwargs={'pk': self.kwargs['pk'],})
 
 class ArticleCreateView(LoginRequiredMixin, generic.CreateView):
     """
@@ -101,7 +102,7 @@ class ArticleCreateView(LoginRequiredMixin, generic.CreateView):
     """
     model = Article
     form_class = ArticleCreateForm
-    template_name = 'articles/articlesForm.html'
+    template_name = 'articles/articleForm.html'
 
     def get_context_data(self, **kwargs):
         """
@@ -132,7 +133,7 @@ class ArticleDeleteView(DeleteView):
     # can specify success url 
     # url to redirect after sucessfully 
     # deleting object 
-    success_url = '/articles/articless/'
+    success_url = '/articles/articles/'
 
 class ArticleCommentDeleteView(DeleteView): 
     # specify the model you want to use 
