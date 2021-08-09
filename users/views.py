@@ -93,7 +93,6 @@ class AlumniSmansaUserDetailView(generic.DetailView):
 class AlumniSmansaUserVerifyView(LoginRequiredMixin, UpdateView):
     form_class = AlumniSmansaUserVerifyForm
     model = AlumniSmansaUser
-    context_object_name = 'alumniSmansauserList'
     template_name = 'users/alumniSmansauserVerify.html'  # Specify your own template name/location
 
     def get_context_data(self, **kwargs):
@@ -171,9 +170,9 @@ class AlumniSmansaUserUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'users/alumniSmansauserUpdate.html'  # Specify your own template name/location
 
     # Sending user object to the form, to verify which fields to display/remove (depending on group)
-    def getForm_kwargs(self):
-        kwargs = super(AlumniSmansaUserUpdateView, self).getForm_kwargs()
-        kwargs.update({'user': self.request.user})
+    def get_form_kwargs(self):
+        kwargs = super(AlumniSmansaUserUpdateView, self).get_form_kwargs()
+        kwargs.update({'userUpdate': self.request.user})
         return kwargs
 
     def get_context_data(self, **kwargs):

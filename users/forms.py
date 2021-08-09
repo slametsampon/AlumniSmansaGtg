@@ -22,26 +22,6 @@ class AlumniSmansaUserChangeForm(UserChangeForm):
         model = get_user_model()
         fields = ('email', 'username',)
 
-class AlumniSmansaUserCreationForm(UserCreationForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            Fieldset('Entry Data User',
-            'username',
-            'mobile_number',
-            Field('address', css_class='form-group col-md-6 mb-0'),
-            'password',
-            ),
-            Submit('submit', 'Sign in')
-        )
-
-    class Meta:
-        model = AlumniSmansaUser
-        fields = ('username', 'mobile_number', 'address', 'password')
-
 class AlumniSmansaUserCreateForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     address = forms.CharField(widget=forms.Textarea(attrs={'rows':3}))
@@ -165,7 +145,7 @@ class AlumniSmansaUserUpdateForm(ModelForm):
         return data
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user')
+        self.user = kwargs.pop('userUpdate')
 
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()

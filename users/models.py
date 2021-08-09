@@ -32,7 +32,7 @@ class AlumniSmansaUser(AbstractUser):
         """
         Returns the url to access a particular blog instance.
         """
-        return reverse('accounts:blogger-detail', args=[str(self.id)])
+        return reverse('users:authorDetail', args=[str(self.id)])
 
     def __str__(self):
         return self.username
