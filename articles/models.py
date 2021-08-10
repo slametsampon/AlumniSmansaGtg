@@ -4,6 +4,8 @@ from django.urls import reverse #Used to generate URLs by reversing the URL patt
 import uuid
 from datetime import date
 
+from ckeditor_uploader.fields import RichTextUploadingField
+
 from users.models import AlumniSmansaUser
 
 class Article(models.Model):
@@ -17,7 +19,8 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(AlumniSmansaUser, on_delete=models.SET_NULL, null=True)
     # Foreign Key used because Article can only have one author/AlumniSmansaUser, but AlumniSmansaUser can have multiple articles.
-    content = models.TextField(max_length=2000, help_text="Enter you article text here.")
+    #content = models.TextField(max_length=2000, help_text="Enter you article text here.")
+    content = RichTextUploadingField(max_length=2000, help_text="Enter you article text here.")
     post_date = models.DateField(default=date.today)
     
     class Meta:

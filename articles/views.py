@@ -98,7 +98,7 @@ class ArticleCommentCreateView(LoginRequiredMixin, generic.CreateView):
 
 class ArticleCreateView(LoginRequiredMixin, generic.CreateView):
     """
-    Form for ceating a articles. Requires login. 
+    Form for creating a articles. Requires login. 
     """
     model = Article
     form_class = ArticleCreateForm

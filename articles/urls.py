@@ -1,4 +1,6 @@
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -13,10 +15,10 @@ urlpatterns = [
     path('article/<uuid:pk>/comment/', views.ArticleCommentCreateView.as_view(), name='articleComment'),
 ]
 
-urlpatterns += [ 
-    # <pk> is identification for id field, 
-    # slug can also be used 
-    path('delete/<uuid:pk>', views.ArticleDeleteView.as_view(), name='articleDelete'), 
-    path('comment/<int:pk>/delete/', views.ArticleCommentDeleteView.as_view(), name='articleCommentDelete'), 
-]
-
+if settings.DEBUG:   
+    urlpatterns += [ 
+        # <pk> is identification for id field, 
+        # slug can also be used 
+        path('delete/<uuid:pk>', views.ArticleDeleteView.as_view(), name='articleDelete'), 
+        path('comment/<int:pk>/delete/', views.ArticleCommentDeleteView.as_view(), name='articleCommentDelete'), 
+    ]

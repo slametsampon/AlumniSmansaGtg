@@ -5,10 +5,13 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import Article, ArticleComment
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Fieldset, Field
+from ckeditor.widgets import CKEditorWidget
 
 
 class ArticleCreateForm(ModelForm):
-    content = forms.CharField(widget=forms.Textarea(attrs={'rows':12}))
+    #content = forms.CharField(widget=forms.Textarea(attrs={'rows':12}))
+    content = forms.CharField(widget=CKEditorWidget(attrs={'rows':12}))
+    #content = forms.CharField(widget=CKEditorWidget())
 
     def clean_title(self):
         data = self.cleaned_data['title']

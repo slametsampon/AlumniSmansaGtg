@@ -8,7 +8,7 @@
   <h3>{{ article.title }}</h3>
   <p><strong>Post date</strong> {{ article.post_date }}</p>
   <p><strong>content:</strong></p>
-  <p style="white-space:pre-wrap;">{{ article.content }}</p>
+  <p style="white-space:pre-wrap;">{{ article.content|safe }}</p>
 
   <div style="margin-left:20px;margin-top:20px">
     <h4>Comments</h4>
